@@ -26,11 +26,19 @@ const showForm = () => {
     }
 };
 
+const clearInput = (inputId) => {
+    const selectedInput = document.getElementById(inputId);
+    selectedInput.value = '';
+};
 
 const buttonClick = (event) => {
     const buttonId = event.target.id;
     if (buttonId === 'getStartedButton') {
         showForm();
+    } else if (buttonId === 'sortButton') {
+
+        clearInput('studentNameInput');
+        hideForm();
     }
     console.log(buttonId);
 };
