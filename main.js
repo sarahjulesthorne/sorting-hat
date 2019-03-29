@@ -61,7 +61,7 @@ const studentObjectBuilder = (name, house, expButtonId, buttonClass, buttonText)
 
 
 const houseGenerator = () => {
-return houses[randomNumGenerator()];
+    return houses[randomNumGenerator()];
 };
 
 //function which tests for the class of "show", removes it, and replaces it with the class of "hide" on the selected element
@@ -125,6 +125,7 @@ const sortButtonClick = () => {
         hideForm();
         studentObjectBuilder(studentName, houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
         domStringBuilder(students);
+        expelButtonListener();
         clearInput('studentNameInput');
     } else {
         hideForm();
@@ -132,9 +133,15 @@ const sortButtonClick = () => {
 };
 
 const expelButtonClick = (event) => {
-event.preventDefault;
+    event.preventDefault;
     const buttonId = event.target.id;
     console.log(buttonId);
+    students.forEach((student, index) => {
+        if (student.expButtonId === buttonId) {
+            students.splice(index, 1);
+        }
+    })
+    domStringBuilder(students);
     expelButtonListener();
 };
 
@@ -142,7 +149,7 @@ const expelButtonListener = () => {
     const expelButtons = document.getElementsByClassName('expel-button');
     for (let i = 0; i < expelButtons.length; i++) {
         expelButtons[i].addEventListener('click', expelButtonClick);
-        }
+    }
 };
 
 const buttonListener = (event) => {
@@ -150,13 +157,18 @@ const buttonListener = (event) => {
     document.getElementById('sortButton').addEventListener('click', sortButtonClick);
 };
 
-const init = () => {
-expelButtonListener();
-    hideForm();
-    studentObjectBuilder('Hagrid', houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
-    studentObjectBuilder('Ron', houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
-    studentObjectBuilder('Newt', houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
-    buttonListener();
+const stockStudentFunction = (studentName, studentHouse, expelButtonId, StockbuttonClass, stockButtonText) => {
+    studentObjectBuilder(studentName, studentHouse, expelButtonId, StockbuttonClass, stockButtonText);
     domStringBuilder(students);
+
+    expelButtonListener();
+};
+
+const init = () => {
+    hideForm();
+    stockStudentFunction('Hagrid', houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
+    stockStudentFunction('Ron', houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
+    stockStudentFunction('Newt', houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
+    buttonListener();
 };
 init();
