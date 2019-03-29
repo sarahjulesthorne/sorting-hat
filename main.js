@@ -26,8 +26,13 @@ const printToDom = (divId, textToPrint) => {
     selectedDiv.innerHTML = textToPrint;
 };
 
+//Random number generator function which generates a random number 0 through the last index of the houses array by checking the house.length property
+const randomNumGenerator = () => {
+    return Math.floor(Math.random() * houses.length);
+};
+
 //Function which builds objects to go in the students array
-const studentObjectBuilder = (name, house, expButtonId, buttonClass, buttonText, imageUrl) => {
+const studentObjectBuilder = (name, house, expButtonId, buttonClass, buttonText) => {
     let expelButtonCounter = 0;
     const student = {
         name: name,
@@ -37,6 +42,7 @@ const studentObjectBuilder = (name, house, expButtonId, buttonClass, buttonText,
         cardClass: `${house.toLowerCase()}-card`,
         buttonClass: buttonClass,
         buttonText: buttonText,
+        imageUrl: houseCrests.filter(h => h.houseName === house)[0].imageUrl
         // houseCrests.forEach((Crest) => {
         //     if (Crest.houseName === house) {
         //         imageUrl: Crest.imageUrl;
@@ -44,13 +50,11 @@ const studentObjectBuilder = (name, house, expButtonId, buttonClass, buttonText,
         // }),
     };
     students.push(student);
+    console.log(student.imageUrl);
     expelButtonCounter++;
 };
 
-//Random number generator function which generates a random number 0 through the last index of the houses array by checking the house.length property
-const randomNumGenerator = () => {
-    return Math.floor(Math.random() * houses.length);
-};
+
 
 const houseGenerator = () => {
 return houses[randomNumGenerator()];
@@ -112,9 +116,8 @@ If it is empty, the function calls the hideForm function only*/
 const sortButtonClick = () => {
     if (document.getElementById('studentNameInput').value !== '') {
         const studentName = document.getElementById('studentNameInput').value;
-let studentHouse = houseGenerator();        
         hideForm();
-        studentObjectBuilder(studentName, studentHouse, 'expelButton', 'expel-button', 'Expel From Hogwarts', houseCrests[houses.indexOf(studentHouse)].imageUrl);
+        studentObjectBuilder(studentName, houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
         domStringBuilder(students);
         console.log(students[0].house);
         clearInput('studentNameInput');
@@ -125,6 +128,7 @@ let studentHouse = houseGenerator();
 
 const expelButtonClick = () => {
     const buttonId = event.target.id;
+    console.log(buttonId);
 };
 
 const buttonListener = () => {
@@ -134,14 +138,11 @@ const buttonListener = () => {
 };
 
 const init = () => {
-let studentHouse = houseGenerator();
 
     hideForm();
-    studentObjectBuilder('Hagrid', studentHouse, 'expelButton', 'expel-button', 'Expel From Hogwarts', houseCrests[houses.indexOf(studentHouse)].imageUrl);
-    studentHouse = houseGenerator();
-    studentObjectBuilder('Ron', studentHouse, 'expelButton', 'expel-button', 'Expel From Hogwarts', houseCrests[houses.indexOf(studentHouse)].imageUrl);
-    studentHouse = houseGenerator();
-    studentObjectBuilder('Newt', studentHouse, 'expelButton', 'expel-button', 'Expel From Hogwarts', houseCrests[houses.indexOf(studentHouse)].imageUrl);
+    studentObjectBuilder('Hagrid', houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
+    studentObjectBuilder('Ron', houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
+    studentObjectBuilder('Newt', houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
     buttonListener();
     domStringBuilder(students);
 };
