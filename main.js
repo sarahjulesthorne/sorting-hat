@@ -3,19 +3,23 @@ const students = [];
 const houses = ['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'];
 const houseCrests = [{
         houseName: 'Gryffindor',
-        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/1/16/Gryffindor_crest.png'
+        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/1/16/Gryffindor_crest.png',
+        altText: 'the Gryffindor crest--a gold lion on a red background raising her paw'
     },
     {
         houseName: 'Hufflepuff',
-        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/5/5e/Hufflepuff_crest.png'
+        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/5/5e/Hufflepuff_crest.png',
+        altText: 'the Hufflepuff crest--a black and white badger on a yellow background, looking over their shoulder'
     },
     {
         houseName: 'Ravenclaw',
-        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/4/40/Ravenclaw_Crest_1.png'
+        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/4/40/Ravenclaw_Crest_1.png',
+        altText: 'the Ravenclaw crest--a coppery metalic raven on a blue background with their wings raised in a U-shape'
     },
     {
         houseName: 'Slytherin',
-        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/4/45/Slytherin_Crest.png'
+        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/4/45/Slytherin_Crest.png',
+altText: 'the Slytherin crest--a silvery grey snake on a green textured background with faer body in the shape of a backwards letter S'
     }
 ];
 let expelButtonCounter = 0;
@@ -42,27 +46,13 @@ const studentObjectBuilder = (name, house, expButtonId, buttonClass, buttonText)
         cardClass: `${house.toLowerCase()}-card`,
         buttonClass: buttonClass,
         buttonText: buttonText,
-        imageUrl: houseCrests.filter(h => h.houseName === house)[0].imageUrl
-        // houseCrests.forEach((Crest) => {
-        //     if (Crest.houseName === house) {
-        //         imageUrl: Crest.imageUrl;
-        //     };
-        // }),
+        imageUrl: houseCrests.filter(h => h.houseName === house)[0].imageUrl,
+        imageAltText: houseCrests.filter(h => h.houseName === house)[0].altText
     };
     students.push(student);
-    console.log(student.imageUrl);
-
-    console.log(student.expButtonId);
-    console.log(student.buttonClass);
-    console.log(student.cardClass);
     expelButtonCounter++;
 };
 
-
-
-const houseGenerator = () => {
-    return houses[randomNumGenerator()];
-};
 
 //function which tests for the class of "show", removes it, and replaces it with the class of "hide" on the selected element
 const hideForm = () => {
@@ -95,7 +85,7 @@ const domStringBuilder = (arr) => {
     arr.forEach((student) => {
         domString += `<div class='col-sm-12 col-md-6 col-lg-4'>`;
         domString += `<div class="card ${student.cardClass}">`;
-        domString += `<img src="${student.imageUrl}" class="card-img-top" alt="Image of the ${student.house} crest">`;
+        domString += `<img src="${student.imageUrl}" class="card-img-top" alt="Image of ${student.imageAltText}">`;
         domString += `<div class="${student.cardClass} card-body">`;
         domString += `<h5 class="card-title">${student.name}</h5>`;
         domString += `<p class="card-text">House: ${student.house}</p>`;
@@ -103,10 +93,12 @@ const domStringBuilder = (arr) => {
         domString += `</div>`;
         domString += `</div>`;
         domString += `</div>`;
-    })
+            })
     domString += `</div>`;
     domString += `</div>`;
-    printToDom('studentCardContainer', domString);
+
+    console.log(document.querySelectorAll('image').alt);
+    printToDom('studentCardContainer', domString);;
 };
 
 //function which calls the showForm function 
@@ -160,7 +152,6 @@ const buttonListener = (event) => {
 const stockStudentFunction = (studentName, studentHouse, expelButtonId, StockbuttonClass, stockButtonText) => {
     studentObjectBuilder(studentName, studentHouse, expelButtonId, StockbuttonClass, stockButtonText);
     domStringBuilder(students);
-
     expelButtonListener();
 };
 

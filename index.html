@@ -11,7 +11,10 @@
 </head>
 
 <body>
+    
+        <!-- Container for page contents -->
     <div class="container">
+
         <div class="row">
             <div class="col-12">
                 <div class="jumbotron">
@@ -21,23 +24,70 @@
                     <hr class="my-4">
                     <button class="btn btn-primary btn-lg" id="getStartedButton">Let's Get Started!</button>
                 </div>
-
-                <form class="show" id="sortingForm">
-                    <div class="form-group">
-                        <label for="studentNameInput">Enter a student's name to be sorted</label>
-                        <input type="text" class="form-control" id="studentNameInput" placeholder="Harry Potter">
-                    </div>
-                    <div class="form-group">
-                        <button type="button" class="btn btn-secondary btn-lg" id="sortButton">Sort</button>
-                    </div>
-                </form>
-
             </div>
+
+    <div class="col-12">
+
+        <!-- Container for sorting form -->
+        <div class="sorting-form-container container">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- Sorting form -->
+                <form class="show" id="sortingForm">
+        <div class="row"></div>
+                    <div class="col-12">
+
+                    <div class="form-title-container ">
+<h2>Sort Students</h2>
+                    </div>
+                    </div>
+</div>
+
+<div class="row">
+
+<div class="form-group col-sm-12 col-md-12 col-lg-8">
+    <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                        <label for="studentNameInput">Enter a student's name to be sorted</label>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4">
+                        <input type="text" class="form-control" id="studentNameInput" placeholder="Harry Potter">
         </div>
     </div>
-    <div class="container" id="studentCardContainer">
 
+</div>
+                    <div class="form-group col-sm-12 col-md-12 col-lg-4">
+                        <button type="button" class="btn btn-secondary btn-lg" id="sortButton">Sort</button>
+                    </div>
+</div>
+                </form>
+
+                <!-- End of form -->
+
+        </div>
     </div>
+            </div>
+
+            <!-- End of sorting-form-container -->
+
+</div>
+
+    <!-- End of column containing sorting-form-container -->
+    <div class="col-12">
+
+<!-- Container for output -->
+    <div class="container" id="studentCardContainer">
+    </div>
+    <!-- End of output container -->
+    </div>
+    <!-- End of column containing container   -->
+</div>
+<!-- End of page row -->
+
+</div>
+<!-- End of page container -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
