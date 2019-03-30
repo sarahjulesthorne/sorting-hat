@@ -1,4 +1,6 @@
-//array of objects with information about students
+/*Project */
+
+//arrays, one of objects with info about students, one with info about houseCrest images
 const students = [];
 const houses = ['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'];
 const houseCrests = [{
@@ -96,8 +98,6 @@ const domStringBuilder = (arr) => {
             })
     domString += `</div>`;
     domString += `</div>`;
-
-    console.log(document.querySelectorAll('image').alt);
     printToDom('studentCardContainer', domString);;
 };
 
@@ -124,10 +124,12 @@ const sortButtonClick = () => {
     }
 };
 
+//function which uses a forEach loop and a conditional statement to test whether the event target's id matches any of the expel buttons' ids. 
+//If it does, the loop removes that button's object from the students array using the splice method.
+//function then calls the domStringBuilder function
 const expelButtonClick = (event) => {
     event.preventDefault;
     const buttonId = event.target.id;
-    console.log(buttonId);
     students.forEach((student, index) => {
         if (student.expButtonId === buttonId) {
             students.splice(index, 1);
@@ -137,6 +139,8 @@ const expelButtonClick = (event) => {
     expelButtonListener();
 };
 
+//event listenr function which forms an array of buttons based on their className and loops through those buttons to attach event-listeners to each of them
+//function calls the expelButtonClick function on click event
 const expelButtonListener = () => {
     const expelButtons = document.getElementsByClassName('expel-button');
     for (let i = 0; i < expelButtons.length; i++) {
@@ -144,16 +148,22 @@ const expelButtonListener = () => {
     }
 };
 
+//function which attaches event listeners to Let's Get Started and Sort buttons
+
 const buttonListener = (event) => {
     document.getElementById('getStartedButton').addEventListener('click', getStartedButtonClick);
     document.getElementById('sortButton').addEventListener('click', sortButtonClick);
 };
 
+//function which calls three functions, the studentobjectBuilder, to build stock students' objects on page load
+//The domStringBuilder to print stock cards on pageload
+//The expelButtonListener, to activate expel button events
 const stockStudentFunction = (studentName, studentHouse, expelButtonId, StockbuttonClass, stockButtonText) => {
     studentObjectBuilder(studentName, studentHouse, expelButtonId, StockbuttonClass, stockButtonText);
     domStringBuilder(students);
     expelButtonListener();
 };
+
 
 const init = () => {
     hideForm();

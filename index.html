@@ -17,6 +17,8 @@
 
         <div class="row">
             <div class="col-12">
+
+                <!-- Jumbotron for displaying greeting and revealing form with button click -->
                 <div class="jumbotron">
                     <h1 class="display-4">Welcome to the Hogwarts Sorting Ceremony!</h1>
                     <p class="lead">Hello! I'm the Hogwarts sorting hat! To sort a student, press the "Let's Get
@@ -28,37 +30,23 @@
 
     <div class="col-12">
 
-        <!-- Container for sorting form -->
-        <div class="sorting-form-container container">
-        <div class="row">
-            <div class="col-12">
-
-                <!-- Sorting form -->
+                <!-- Sorting form with labeled input to enter student's name and button to sort -->
                 <form class="show" id="sortingForm">
-        <div class="row"></div>
-                    <div class="col-12">
-
-                    <div class="sorting-form-title-container ">
+    
+                    <div class="sorting-form-title-container row">
 <h2 class="sorting-form-title">Sort Students</h2>
                     </div>
-                    </div>
-</div>
-
-<div class="row">
-
-<div class="form-group col-sm-12 col-md-12 col-lg-8">
+                
     <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="col-sm-12 col-md-6 col-lg-5">
                         <label for="studentNameInput">Enter a student's name to be sorted</label>
         </div>
 
-        <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="col-sm-12 col-md-6 col-lg-5">
                         <input type="text" class="form-control" id="studentNameInput" placeholder="Harry Potter">
         </div>
-    </div>
 
-</div>
-                    <div class="form-group col-sm-12 col-md-12 col-lg-4">
+                    <div class="form-group col-sm-12 col-md-12 col-lg-2">
                         <button type="button" class="btn btn-secondary btn-lg" id="sortButton">Sort</button>
                     </div>
 </div>
@@ -66,23 +54,17 @@
 
                 <!-- End of form -->
 
-        </div>
-    </div>
-            </div>
-
-            <!-- End of sorting-form-container -->
-
 </div>
 
-    <!-- End of column containing sorting-form-container -->
+    
     <div class="col-12">
 
 <!-- Container for output -->
     <div class="container" id="studentCardContainer">
     </div>
-    <!-- End of output container -->
+    
     </div>
-    <!-- End of column containing container   -->
+
 </div>
 <!-- End of page row -->
 

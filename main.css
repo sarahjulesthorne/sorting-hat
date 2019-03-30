@@ -1,6 +1,13 @@
 body {
-    background-color: blue;
+    background-color: #ffebcd;
 }
+
+/* form border styling */
+form {
+    border: 5px solid black;
+}
+
+/* form title styling */
 .sorting-form-title-container {
     display: flexbox;
 }
@@ -10,6 +17,7 @@ body {
     text-align: center;
 }
 
+/* visibility classes styling for displaying or hiding form */
 .hide {
     visibility: hidden;
 }
@@ -18,6 +26,7 @@ body {
     visibility: visible;
 }
 
+/* Card image styling for consistency of height */
 .card-img-top {
     height: 300px;
 }
