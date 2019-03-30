@@ -1,6 +1,14 @@
 body {
     background-color: blue;
 }
+.sorting-form-title-container {
+    display: flexbox;
+}
+
+.sorting-form-title {
+    width: 100%;
+    text-align: center;
+}
 
 .hide {
     visibility: hidden;
@@ -8,4 +16,8 @@ body {
 
 .show {
     visibility: visible;
+}
+
+.card-img-top {
+    height: 300px;
 }
