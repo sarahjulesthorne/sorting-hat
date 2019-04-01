@@ -56,20 +56,16 @@ const studentObjectBuilder = (name, house, expButtonId, buttonClass, buttonText)
 };
 
 
-//function which tests for the class of "show", removes it, and replaces it with the class of "hide" on the selected element
+//function which adds the class of hide to the designated element
 const hideForm = () => {
     const sortingFormClasses = document.getElementById('sortingForm').classList;
-    sortingFormClasses.toggle('show');
-    sortingFormClasses.toggle('hide');
+    sortingFormClasses.add('hide');
 };
 
-//function which tests to see if the class is .hide and, if true, removes the .hide class and adds the .show class to the sortingForm element
+//function which removes the class of hide from the designated element  
 const showForm = () => {
     const sortingFormClasses = document.getElementById('sortingForm').classList;
-    if (document.getElementById('sortingForm').className === 'hide') {
-        sortingFormClasses.add('show');
         sortingFormClasses.remove('hide');
-    }
 };
 
 //function which clears the value  of the designated element
@@ -166,7 +162,6 @@ const stockStudentFunction = (studentName, studentHouse, expelButtonId, Stockbut
 
 
 const init = () => {
-    hideForm();
     stockStudentFunction('Hagrid', houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
     stockStudentFunction('Ron', houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
     stockStudentFunction('Newt', houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');

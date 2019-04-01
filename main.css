@@ -17,13 +17,9 @@ form {
     text-align: center;
 }
 
-/* visibility classes styling for displaying or hiding form */
+/* display classes for hiding form */
 .hide {
-    visibility: hidden;
-}
-
-.show {
-    visibility: visible;
+    display: none;
 }
 
 /* Card image styling for consistency of height */
