@@ -9,8 +9,8 @@ When the Sort button is pressed, the input also clears and the form is hidden.
 If an Expel button is pressed, that student's card is removed from the page and from the aray of student objects.  
 
 ### Screenshots  
-![Screenshot of top half of page, featuring jumbotron and sorting form with the very topmost edge of cards visible.]()  
-![Screenshot of three stock cards and sorting form.]()  
+![Screenshot of top half of page, featuring jumbotron and sorting form with the very topmost edge of cards visible.](https://raw.githubusercontent.com/sarahjulesthorne/sorting-hat/master/images/2019-04-01.png "Screenshot of top half of page after Let's Get Started button has been pressed")  
+![Screenshot of three stock cards and sorting form.](https://raw.githubusercontent.com/sarahjulesthorne/sorting-hat/master/images/2019-04-01%20(1).png "Screenshot of lower section of page")  
 ### Getting Started  
 Clone the project down:  
 ```  
