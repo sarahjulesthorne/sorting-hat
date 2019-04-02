@@ -1,4 +1,8 @@
-/*Project */
+/*Project is an exercise in event listeners, printing to the dom, and array methods
+The page uses an object builder function to populate the students array, then pulls from that array to print cards to the page
+Three of those cards print as stock cards on page load, while others can be added using the sorting form which appears when the Let's Get Started button is clicked
+When a student's name is entered in the input, and the sort button is pressed, the form's input is emptied, the form is hidden, an object with a randomly generated house, the student's name, and an associated house crest is formed
+That object is then printed to the page using the domStringBuilder function*/
 
 //arrays, one of objects with info about students, one with info about houseCrest images
 const students = [];
