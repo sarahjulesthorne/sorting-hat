@@ -1,11 +1,28 @@
 body {
-    background-color: blue;
+    background-color: #ffebcd;
 }
 
+/* form border styling */
+form {
+    border: 5px solid black;
+}
+
+/* form title styling */
+.sorting-form-title-container {
+    display: flexbox;
+}
+
+.sorting-form-title {
+    width: 100%;
+    text-align: center;
+}
+
+/* display classes for hiding form */
 .hide {
-    visibility: hidden;
+    display: none;
 }
 
-.show {
-    visibility: visible;
+/* Card image styling for consistency of height */
+.card-img-top {
+    height: 300px;
 }

@@ -1,21 +1,31 @@
-//array of objects with information about students
+/*Project is an exercise in event listeners, printing to the dom, and array methods
+The page uses an object builder function to populate the students array, then pulls from that array to print cards to the page
+Three of those cards print as stock cards on page load, while others can be added using the sorting form which appears when the Let's Get Started button is clicked
+When a student's name is entered in the input, and the sort button is pressed, the form's input is emptied, the form is hidden, an object with a randomly generated house, the student's name, and an associated house crest is formed
+That object is then printed to the page using the domStringBuilder function*/
+
+//arrays, one of objects with info about students, one with info about houseCrest images
 const students = [];
 const houses = ['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'];
 const houseCrests = [{
         houseName: 'Gryffindor',
-        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/1/16/Gryffindor_crest.png'
+        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/1/16/Gryffindor_crest.png',
+        altText: 'the Gryffindor crest--a gold lion on a red background raising her paw'
     },
     {
         houseName: 'Hufflepuff',
-        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/5/5e/Hufflepuff_crest.png'
+        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/5/5e/Hufflepuff_crest.png',
+        altText: 'the Hufflepuff crest--a black and white badger on a yellow background, looking over their shoulder'
     },
     {
         houseName: 'Ravenclaw',
-        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/4/40/Ravenclaw_Crest_1.png'
+        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/4/40/Ravenclaw_Crest_1.png',
+        altText: 'the Ravenclaw crest--a coppery metalic raven on a blue background with their wings raised in a U-shape'
     },
     {
         houseName: 'Slytherin',
-        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/4/45/Slytherin_Crest.png'
+        imageUrl: 'https://vignette.wikia.nocookie.net/pottermore/images/4/45/Slytherin_Crest.png',
+altText: 'the Slytherin crest--a silvery grey snake on a green textured background with faer body in the shape of a backwards letter S'
     }
 ];
 let expelButtonCounter = 0;
@@ -42,42 +52,24 @@ const studentObjectBuilder = (name, house, expButtonId, buttonClass, buttonText)
         cardClass: `${house.toLowerCase()}-card`,
         buttonClass: buttonClass,
         buttonText: buttonText,
-        imageUrl: houseCrests.filter(h => h.houseName === house)[0].imageUrl
-        // houseCrests.forEach((Crest) => {
-        //     if (Crest.houseName === house) {
-        //         imageUrl: Crest.imageUrl;
-        //     };
-        // }),
+        imageUrl: houseCrests.filter(h => h.houseName === house)[0].imageUrl,
+        imageAltText: houseCrests.filter(h => h.houseName === house)[0].altText
     };
     students.push(student);
-    console.log(student.imageUrl);
-
-    console.log(student.expButtonId);
-    console.log(student.buttonClass);
-    console.log(student.cardClass);
     expelButtonCounter++;
 };
 
 
-
-const houseGenerator = () => {
-    return houses[randomNumGenerator()];
-};
-
-//function which tests for the class of "show", removes it, and replaces it with the class of "hide" on the selected element
+//function which adds the class of hide to the designated element
 const hideForm = () => {
     const sortingFormClasses = document.getElementById('sortingForm').classList;
-    sortingFormClasses.toggle('show');
-    sortingFormClasses.toggle('hide');
+    sortingFormClasses.add('hide');
 };
 
-//function which tests to see if the class is .hide and, if true, removes the .hide class and adds the .show class to the sortingForm element
+//function which removes the class of hide from the designated element  
 const showForm = () => {
     const sortingFormClasses = document.getElementById('sortingForm').classList;
-    if (document.getElementById('sortingForm').className === 'hide') {
-        sortingFormClasses.add('show');
         sortingFormClasses.remove('hide');
-    }
 };
 
 //function which clears the value  of the designated element
@@ -95,7 +87,7 @@ const domStringBuilder = (arr) => {
     arr.forEach((student) => {
         domString += `<div class='col-sm-12 col-md-6 col-lg-4'>`;
         domString += `<div class="card ${student.cardClass}">`;
-        domString += `<img src="${student.imageUrl}" class="card-img-top" alt="Image of the ${student.house} crest">`;
+        domString += `<img src="${student.imageUrl}" class="card-img-top" alt="Image of ${student.imageAltText}">`;
         domString += `<div class="${student.cardClass} card-body">`;
         domString += `<h5 class="card-title">${student.name}</h5>`;
         domString += `<p class="card-text">House: ${student.house}</p>`;
@@ -103,10 +95,10 @@ const domStringBuilder = (arr) => {
         domString += `</div>`;
         domString += `</div>`;
         domString += `</div>`;
-    })
+            })
     domString += `</div>`;
     domString += `</div>`;
-    printToDom('studentCardContainer', domString);
+    printToDom('studentCardContainer', domString);;
 };
 
 //function which calls the showForm function 
@@ -132,10 +124,12 @@ const sortButtonClick = () => {
     }
 };
 
+//function which uses a forEach loop and a conditional statement to test whether the event target's id matches any of the expel buttons' ids. 
+//If it does, the loop removes that button's object from the students array using the splice method.
+//function then calls the domStringBuilder function
 const expelButtonClick = (event) => {
     event.preventDefault;
     const buttonId = event.target.id;
-    console.log(buttonId);
     students.forEach((student, index) => {
         if (student.expButtonId === buttonId) {
             students.splice(index, 1);
@@ -145,6 +139,8 @@ const expelButtonClick = (event) => {
     expelButtonListener();
 };
 
+//event listenr function which forms an array of buttons based on their className and loops through those buttons to attach event-listeners to each of them
+//function calls the expelButtonClick function on click event
 const expelButtonListener = () => {
     const expelButtons = document.getElementsByClassName('expel-button');
     for (let i = 0; i < expelButtons.length; i++) {
@@ -152,20 +148,24 @@ const expelButtonListener = () => {
     }
 };
 
+//function which attaches event listeners to Let's Get Started and Sort buttons
+
 const buttonListener = (event) => {
     document.getElementById('getStartedButton').addEventListener('click', getStartedButtonClick);
     document.getElementById('sortButton').addEventListener('click', sortButtonClick);
 };
 
+//function which calls three functions, the studentobjectBuilder, to build stock students' objects on page load
+//The domStringBuilder to print stock cards on pageload
+//The expelButtonListener, to activate expel button events
 const stockStudentFunction = (studentName, studentHouse, expelButtonId, StockbuttonClass, stockButtonText) => {
     studentObjectBuilder(studentName, studentHouse, expelButtonId, StockbuttonClass, stockButtonText);
     domStringBuilder(students);
-
     expelButtonListener();
 };
 
+
 const init = () => {
-    hideForm();
     stockStudentFunction('Hagrid', houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
     stockStudentFunction('Ron', houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
     stockStudentFunction('Newt', houses[randomNumGenerator()], 'expelButton', 'expel-button', 'Expel From Hogwarts');
